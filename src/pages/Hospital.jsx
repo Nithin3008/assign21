@@ -26,6 +26,12 @@ const Hospital = () => {
 
     setTopWard(ward);
   }, [wards]);
+  const totalNoOfBeds = wards.reduce((acc, val) => acc + val.capacity, 0);
+  const occupancyRate = (patients.length / totalNoOfBeds) * 100;
+  const averageLengthOfStay =
+    patients.reduce((acc, val) => acc + val.noOfDays, 0) / patients.length;
+  console.log(averageLengthOfStay);
+  console.log(occupancyRate, patients.length);
   return (
     <div className="flex flex-col">
       {" "}
@@ -39,6 +45,8 @@ const Hospital = () => {
         }, 0) - patients.length}
       </span>
       <span className="text-xl">Top performing ward: {topWard.name}</span>
+      <p>Current Occupancy Rate : {occupancyRate}</p>
+      <p>Average length of Stay: {averageLengthOfStay}</p>
     </div>
   );
 };

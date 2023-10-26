@@ -6,6 +6,7 @@ import {
   updatePatient,
 } from "../Redux/patientRedux";
 import PatientsUi from "../Components/PatientsUi";
+import { fetchWards } from "../Redux/wardPatientRedux";
 const Patients = () => {
   const [displayForm, setDisplay] = useState(false);
   const [displayForm1, setDisplay1] = useState(false);
@@ -23,7 +24,7 @@ const Patients = () => {
       medicalHistory: event.target.history.value,
       contact: event.target.contact.value,
       ward: event.target.ward.value,
-      // School: event.target.school.value,
+      noOfDays: event.target.noOfDays.value,
     };
     console.log(data);
     dispatch(addPatient(data));
@@ -39,6 +40,7 @@ const Patients = () => {
   }
   useEffect(() => {
     dispatch(fetchPatients());
+    dispatch(fetchWards());
   }, [dispatch]);
   function editForm() {
     setDisplay1(!displayForm1);
@@ -53,25 +55,29 @@ const Patients = () => {
     setEditData(newName);
   }
   function editAge(event) {
-    const newStudent = { ...editData, age: event.target.value };
-    setEditData(newStudent);
+    const editPatientData = { ...editData, age: event.target.value };
+    setEditData(editPatientData);
   }
   function editMedicalHistory(event) {
-    const newStudent = { ...editData, medicalHistory: event.target.value };
-    setEditData(newStudent);
+    const editPatientData = { ...editData, medicalHistory: event.target.value };
+    setEditData(editPatientData);
   }
   function editGender(event) {
-    const newStudent = { ...editData, gender: event.target.value };
-    setEditData(newStudent);
+    const editPatientData = { ...editData, gender: event.target.value };
+    setEditData(editPatientData);
   }
 
   function editContact(event) {
-    const newStudent = { ...editData, contact: event.target.value };
-    setEditData(newStudent);
+    const editPatientData = { ...editData, contact: event.target.value };
+    setEditData(editPatientData);
   }
   function editWard(event) {
-    const newStudent = { ...editData, ward: event.target.value };
-    setEditData(newStudent);
+    const editPatientData = { ...editData, ward: event.target.value };
+    setEditData(editPatientData);
+  }
+  function editDays(event) {
+    const editPatientData = { ...editData, noOfDays: event.target.value };
+    setEditData(editPatientData);
   }
 
   return (
@@ -133,13 +139,14 @@ const Patients = () => {
               ))}
             </select>
           </label>
-          {/* <label>Enter School</label>
+          <label>No of Days in Hospital</label>
           <input
             className="border-2 border-gray-400"
             required
-            id="school"
-            type="string"
-          ></input> */}
+            id="noOfDays"
+            type="number"
+          ></input>
+
           <button
             className="border-2 p-2 bg-blue-500 border-blue-500 rounded-md"
             type="submit"
@@ -218,7 +225,7 @@ const Patients = () => {
             Edit Ward :
             <select
               id="ward"
-              value={editWard.ward}
+              value={editData.ward}
               onChange={(e) => editWard(e)}
             >
               <option value="default">Select</option>
@@ -227,7 +234,14 @@ const Patients = () => {
               ))}
             </select>
           </label>
-
+          <label>Edit Days in Hospital</label>
+          <input
+            className="border-2 border-gray-400"
+            required
+            value={editData.noOfDays}
+            id="noOfHospital"
+            type="number"
+          ></input>
           <button
             className="border-2 p-2 bg-blue-500 border-blue-500 rounded-md"
             type="submit"
