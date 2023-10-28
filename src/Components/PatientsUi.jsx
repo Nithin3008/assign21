@@ -36,9 +36,9 @@ const PatientsUi = ({ data, edit, form }) => {
         {data.noOfDays}
       </p>
       {/* <p>
-    <span className="font-medium text-xl">School : </span>
-    {data.School}
-  </p> */}
+      <span className="font-medium text-xl">School : </span>
+      {data.School}
+    </p> */}
       <button
         onClick={() => dispatch(deletePatient(data._id))}
         className="bg-red-500 p-2 text-white rounded text-lg "

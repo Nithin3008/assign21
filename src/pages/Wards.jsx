@@ -194,7 +194,7 @@ const Wards = () => {
           className="bg-blue-500 p-2 text-white rounded text-lg mt-2"
           onClick={() => setDisplay((s) => !s)}
         >
-          Add New Teacher
+          Add New Ward
         </button>
       </div>
     </>

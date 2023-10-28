@@ -241,6 +241,7 @@ const Patients = () => {
             value={editData.noOfDays}
             id="noOfHospital"
             type="number"
+            onChange={(e) => editDays(e)}
           ></input>
           <button
             className="border-2 p-2 bg-blue-500 border-blue-500 rounded-md"
@@ -271,7 +272,7 @@ const Patients = () => {
           className="bg-blue-500 p-2 text-white rounded text-lg mt-2"
           onClick={() => setDisplay((s) => !s)}
         >
-          Add Item
+          Add Patient
         </button>
       </div>
     </>
